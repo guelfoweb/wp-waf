@@ -1,0 +1,119 @@
+# Copyright (C) 2010 WP WAF
+# This file is distributed under the same license as the WP WAF package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP WAF 1.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/wp_waf\n"
+"POT-Creation-Date: 2012-02-04 15:50:33+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2010-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: wp_waf.php:190
+msgid "Settings"
+msgstr ""
+
+#: wp_waf.php:208
+msgid "WP WAF Settings"
+msgstr ""
+
+#: wp_waf.php:209
+msgid ""
+"The WP_WAF is a Web Application Firewall for Wordpress. Protects against "
+"current and future attacks."
+msgstr ""
+
+#: wp_waf.php:227
+msgid "Manage email notification of attacks"
+msgstr ""
+
+#: wp_waf.php:232
+msgid "Email Address"
+msgstr ""
+
+#: wp_waf.php:244
+msgid "Notifications for attacks type"
+msgstr ""
+
+#: wp_waf.php:248
+msgid "Query"
+msgstr ""
+
+#: wp_waf.php:255
+msgid "Method"
+msgstr ""
+
+#: wp_waf.php:262
+msgid "Referrer"
+msgstr ""
+
+#: wp_waf.php:269
+msgid "User Agent"
+msgstr ""
+
+#: wp_waf.php:276
+msgid "User Agent Empty"
+msgstr ""
+
+#: wp_waf.php:279
+msgid "Not recommended"
+msgstr ""
+
+#: wp_waf.php:288
+msgid "Under the Hood"
+msgstr ""
+
+#: wp_waf.php:292
+msgid "Block Query &gt; 255 char"
+msgstr ""
+
+#: wp_waf.php:299
+msgid "Attack Message"
+msgstr ""
+
+#: wp_waf.php:303
+msgid "Logo"
+msgstr ""
+
+#: wp_waf.php:306
+msgid "Blank Page"
+msgstr ""
+
+#: wp_waf.php:317
+msgid "Test Configuration"
+msgstr ""
+
+#: wp_waf.php:322
+msgid "%1$sTest your configuration now!%2$s"
+msgstr ""
+
+#: wp_waf.php:331
+msgid "Save Changes"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "WP WAF"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://wordpress.org/extend/plugins/wp-waf/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"WP_WAF - Wordpress Application Firewall. Protects against current and future "
+"attacks. Email notification is disabled by default, notification can be "
+"activated and configured in <strong>Settings -> WP WAF</strong>. Go to your "
+"<a href=\"options-general.php?page=wp_waf\">WP WAF configuration</a> page."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Gianni 'guelfoweb' Amato"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.guelfoweb.com/"
+msgstr ""
