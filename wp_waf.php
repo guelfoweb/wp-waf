@@ -4,8 +4,8 @@ Plugin Name: WP WAF
 Plugin URI: http://wordpress.org/extend/plugins/wp-waf/
 Description: WP WAF - WordPress Application Firewall. Protects against current and future attacks. Email notification is disabled by default, notification can be activated and configured in <strong>Settings -> WP WAF</strong>. Go to your <a href="options-general.php?page=wp_waf">WP WAF configuration</a> page.
 Author: Gianni 'guelfoweb' Amato
-Version: 1.0
-Author URI: http://www.guelfoweb.com/
+Version: 2.0
+Author URI: https://github.com/guelfoweb/wp-waf/
 */
 
 $blog_wpurl  = get_bloginfo('wpurl');
@@ -156,7 +156,29 @@ add_action('posts_selection', 'wp_waf_filter');
 
 
 function wp_waf_install(){
-  
+	/* echo getcwd() = wp-admin */
+	$htaccess = '../.htaccess';
+	$htaback  = '../original.htaccess';
+	$htawpwaf = '../wp-content/plugins/wp-waf/stuff/wp-waf.htaccess';
+	
+	if (file_exists($htaccess)) {
+		if (file_exists($htaback)) {
+			/* remove original .htaccess */
+			unlink($htaccess);
+			/* replace .htaccess with wp-waf.htaccess */
+			copy($htawpwaf, $htaccess);	
+		} else {
+			/* backup */
+			copy($htaccess, $htaback);
+			/* remove original .htaccess */
+			unlink($htaccess);
+			/* replace .htaccess with wp-waf.htaccess */
+			copy($htawpwaf, $htaccess);
+		} 
+	} else {
+		/* replace .htaccess with wp-waf.htaccess */
+		copy($htawpwaf, $htaccess);
+	}
 }
 
 if (isset($_GET['activate']) && $_GET['activate'] == 'true') {
