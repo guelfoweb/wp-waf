@@ -1,0 +1,63 @@
+# BEGIN WordPress
+ServerSignature Off
+
+#########################################################################################################
+
+Options -Indexes
+
+DirectoryIndex index.php index.html /index.php
+
+#########################################################################################################
+
+# REQUEST METHODS FILTERED
+RewriteEngine On
+RewriteCond %{REQUEST_METHOD} ^(HEAD|TRACE|DELETE|TRACK|DEBUG) [NC]
+RewriteRule ^(.*)$ index.php [L]
+
+#########################################################################################################
+
+# HTTP USER AGENT FILTERED
+RewriteEngine On
+RewriteCond %{HTTP_USER_AGENT} (havij|libwww-perl|wget|python|nikto|curl|scan|java|winhttp|clshttp|loader) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (%0A|%0D|%27|%3C|%3E|%00) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (;|<|>|'|"|\)|\(|%0A|%0D|%22|%27|%28|%3C|%3E|%00).*(libwww-perl|wget|python|nikto|curl|scan|java|winhttp|HTTrack|clshttp|archiver|loader|email|harvest|extract|grab|miner) [NC,OR]
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# REQUEST URI FILTERED
+RewriteCond %{REQUEST_URI} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
+RewriteCond %{REQUEST_URI} (<|%3C)([^e]*e)+mbed.*(>|%3E) [NC,OR]
+RewriteCond %{REQUEST_URI} (<|%3C)([^o]*o)+bject.*(>|%3E) [NC,OR]
+RewriteCond %{REQUEST_URI} (<|%3C)([^i]*i)+frame.*(>|%3E) [NC,OR]
+RewriteCond %{REQUEST_URI} base64_(en|de)code[^(]*\([^)]*\) [NC,OR]
+RewriteCond %{REQUEST_URI} (%0A|%0D|\\r|\\n) [NC,OR]
+RewriteCond %{REQUEST_URI} union([^a]*a)+ll([^s]*s)+elect [NC]
+
+RewriteRule ^(.*)$ index.php [L]
+
+#########################################################################################################
+
+# QUERY STRING FILTERED
+RewriteEngine On
+RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} (<|%3C)([^e]*e)+mbed.*(>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} (<|%3C)([^o]*o)+bject.*(>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} (<|%3C)([^i]*i)+frame.*(>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} base64_(en|de)code[^(]*\([^)]*\) [NC,OR]
+RewriteCond %{QUERY_STRING} (%0A|%0D|\\r|\\n) [NC,OR]
+RewriteCond %{QUERY_STRING} (\.\.\/|\.\.\\|%2e%2e%2f|%2e%2e\/|\.\.%2f|%2e%2e%5c) [NC,OR]
+RewriteCond %{QUERY_STRING} (;|<|>|'|"|\)|%0A|%0D|%22|%27|%3C|%3E|%00).*(/\*|union|select|insert|cast|set|declare|drop|update|md5|benchmark).* [NC,OR]
+RewriteCond %{QUERY_STRING} union([^a]*a)+ll([^s]*s)+elect [NC]
+RewriteRule ^(.*)$ index.php [L]
+
+#########################################################################################################
+
+RewriteEngine On
+# DEFAULT
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php [L]
+
+#########################################################################################################
+
+# END WordPress
