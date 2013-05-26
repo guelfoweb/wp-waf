@@ -160,6 +160,13 @@ function wp_waf_install(){
 	$htaccess = '../.htaccess';
 	$htaback  = '../original.htaccess';
 	$htawpwaf = '../wp-content/plugins/wp-waf/stuff/wp-waf.htaccess';
+	if (file_exists($htawpwaf)) {
+		/* from wordpress repository */
+		$htawpwaf = '../wp-content/plugins/wp-waf/stuff/wp-waf.htaccess';
+	} else {
+		/* form github repository */
+		$htawpwaf = '../wp-content/plugins/wp-waf-master/stuff/wp-waf.htaccess';
+	}
 	
 	if (file_exists($htaccess)) {
 		if (file_exists($htaback)) {
