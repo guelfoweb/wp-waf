@@ -6,7 +6,7 @@
 
 ##### SETTINGS
 
-<img src="http://wordpress.org/plugins/wp-waf/screenshot-1.png" />
+<img src="https://raw.github.com/guelfoweb/wp-waf/master/screenshot-1.png" />
 
 ##### INFO
 WP WAF is a WordPress Web Application Firewall.<br>
