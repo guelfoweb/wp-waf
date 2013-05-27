@@ -4,6 +4,10 @@
 
 <a href="https://github.com/guelfoweb/wp-waf/archive/master.zip">Click here</a> to download latest version (v.2.0).
 
+##### SETTINGS
+
+<img src="http://wordpress.org/plugins/wp-waf/screenshot-1.png" />
+
 ##### INFO
 WP WAF is a WordPress Web Application Firewall.<br>
 It is currently maintained by Gianni 'guelfoweb' Amato, who can be contacted at guelfoweb@gmail.com.<br>
