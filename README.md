@@ -1,9 +1,16 @@
-WP-WAF
-======
+<img src="https://github.com/guelfoweb/wp-waf/blob/master/stuff/wp_waf.png?raw=true" alt="WordPress Web Application Firewall" title="WordPress Web Application Firewall" />
 
-WordPress Application Firewall
+#### DOWNLOAD
 
-Download
---------
+<a href="https://github.com/guelfoweb/wp-waf/archive/master.zip">Click here</a> to download latest version (v.2.0).
 
-<a href="https://github.com/guelfoweb/wp-waf/archive/master.zip">wp-waf v.2.0</a>
+##### INFO
+WP WAF is a WordPress Web Application Firewall.<br>
+It is currently maintained by Gianni 'guelfoweb' Amato, who can be contacted at guelfoweb@gmail.com.<br>
+Suggestions and criticism are welcome.
+
+##### LICENSE
+[GNU GPL 3] (http://www.gnu.org/copyleft/gpl.html)
+
+##### SPONSOR
+WP WAF is sponsored by [Security Side] (http://www.securityside.it).
