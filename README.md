@@ -14,7 +14,7 @@ It is currently maintained by Gianni 'guelfoweb' Amato, who can be contacted at 
 Suggestions and criticism are welcome.
 
 ##### LICENSE
-[GNU GPL 3] (http://www.gnu.org/copyleft/gpl.html)
+[GNU GPL 2] (http://www.gnu.org/copyleft/gpl.html)
 
 ##### SPONSOR
 WP WAF is sponsored by [Security Side] (http://www.securityside.it).
