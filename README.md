@@ -2,7 +2,7 @@
 
 #### DOWNLOAD
 
-<a href="https://github.com/guelfoweb/wp-waf/archive/master.zip">Click here</a> to download latest version (v.2.0).
+<a href="https://github.com/guelfoweb/wp-waf/archive/master.zip">Click here</a> to download latest version (v.2.0β).
 
 ##### SETTINGS
 
