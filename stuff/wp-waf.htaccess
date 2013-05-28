@@ -5,14 +5,14 @@ ServerSignature Off
 
 Options -Indexes
 
-DirectoryIndex index.php index.html /index.php
+DirectoryIndex index.php index.html index.php
 
 #########################################################################################################
 
 # REQUEST METHODS FILTERED
 RewriteEngine On
 RewriteCond %{REQUEST_METHOD} ^(HEAD|TRACE|DELETE|TRACK|DEBUG) [NC]
-RewriteRule ^(.*)$ index.php [L]
+RewriteRule . /index.php [L]
 
 #########################################################################################################
 
@@ -33,7 +33,7 @@ RewriteCond %{REQUEST_URI} base64_(en|de)code[^(]*\([^)]*\) [NC,OR]
 RewriteCond %{REQUEST_URI} (%0A|%0D|\\r|\\n) [NC,OR]
 RewriteCond %{REQUEST_URI} union([^a]*a)+ll([^s]*s)+elect [NC]
 
-RewriteRule ^(.*)$ index.php [L]
+RewriteRule . index.php [L]
 
 #########################################################################################################
 
@@ -48,12 +48,13 @@ RewriteCond %{QUERY_STRING} (%0A|%0D|\\r|\\n) [NC,OR]
 RewriteCond %{QUERY_STRING} (\.\.\/|\.\.\\|%2e%2e%2f|%2e%2e\/|\.\.%2f|%2e%2e%5c) [NC,OR]
 RewriteCond %{QUERY_STRING} (;|<|>|'|"|\)|%0A|%0D|%22|%27|%3C|%3E|%00).*(/\*|union|select|insert|cast|set|declare|drop|update|md5|benchmark).* [NC,OR]
 RewriteCond %{QUERY_STRING} union([^a]*a)+ll([^s]*s)+elect [NC]
-RewriteRule ^(.*)$ index.php [L]
+RewriteRule . index.php [L]
 
 #########################################################################################################
 
-RewriteEngine On
 # DEFAULT
+RewriteEngine On
+RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . index.php [L]
