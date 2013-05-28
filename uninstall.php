@@ -24,3 +24,5 @@ if ( file_exists( $htaccess ) ) {
 
 // Delete options from the database
 delete_option( 'waf_settings' );
+
+?>
