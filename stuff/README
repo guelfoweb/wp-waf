@@ -1,11 +1,10 @@
 === WP_WAF ===
 
 Plugin Name: WP WAF
-Description: WP_WAF - Wordpress Application Firewall.
+Description: WP WAF - Wordpress Web Application Firewall.
 
 Author: Gianni 'guelfoweb' Amato
 Email: guelfoweb@gmail.com
 Web: www.guelfoweb.com
 
-License: GNU GPL 3 http://www.gnu.org/copyleft/gpl.html
-
+License: GNU GPL 2 http://www.gnu.org/copyleft/gpl.html
