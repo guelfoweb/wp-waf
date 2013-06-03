@@ -1,18 +1,11 @@
-# BEGIN WordPress
-ServerSignature Off
-
-#########################################################################################################
-
-Options -Indexes
-
-DirectoryIndex index.php index.html index.php
+# BEGIN WP WAF
 
 #########################################################################################################
 
 # REQUEST METHODS FILTERED
 RewriteEngine On
 RewriteCond %{REQUEST_METHOD} ^(HEAD|TRACE|DELETE|TRACK|DEBUG) [NC]
-RewriteRule . /index.php [L]
+RewriteRule . index.php [L]
 
 #########################################################################################################
 
@@ -52,13 +45,4 @@ RewriteRule . index.php [L]
 
 #########################################################################################################
 
-# DEFAULT
-RewriteEngine On
-RewriteBase /
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . index.php [L]
-
-#########################################################################################################
-
-# END WordPress
+# END WP WAF
