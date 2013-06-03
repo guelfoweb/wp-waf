@@ -61,12 +61,8 @@ function wp_waf_email( $attack_type, $log, $matched, $via ) {
 	$body   .= "$log";
 
 	/* Send email */
-	if ( get_option( $via ) != "" ) {
-		if ( $waf_email == "" ) {
-			@mail( $admin_email, $subject, $body );
-		} else {
+	if ( isset( $settings[$via] ) && $waf_email != "" ) {
 			@mail( $waf_email, $subject, $body );
-		}
 	}
 
 	global $alert;
@@ -128,7 +124,7 @@ function wp_waf_filter( $content ) {
 	/* Query - > 255 */
 	elseif ( strlen( $req_query ) > 255 ) {
 		if ( $settings['waf_query_too_long'] != "" ) {
-			wp_waf_email( 'Query Too Long', $msg, '> 255', 'waf_query' );
+			wp_waf_email( 'Query Too Long', $msg, '> 255', 'waf_query_too_long' );
 		}
 	}
 	/* Query - Cross Site Scripting */
@@ -168,24 +164,40 @@ function wp_waf_install() {
 		$htawpwaf = '../wp-content/plugins/wp-waf-master/stuff/wp-waf.htaccess';
 	}
 
-	if ( file_exists( $htaccess ) ) {
-		if ( file_exists( $htaback ) ) {
-			/* remove original .htaccess */
-			unlink( $htaccess );
-			/* replace .htaccess with wp-waf.htaccess */
-			copy( $htawpwaf, $htaccess );
-		} else {
-			/* backup */
-			copy( $htaccess, $htaback );
-			/* remove original .htaccess */
-			unlink( $htaccess );
-			/* replace .htaccess with wp-waf.htaccess */
-			copy( $htawpwaf, $htaccess );
-		}
-	} else {
-		/* replace .htaccess with wp-waf.htaccess */
-		copy( $htawpwaf, $htaccess );
-	}
+    /* Configure .htaccess */
+   	/* more on .htaccess -> http://codex.wordpress.org/Class_Reference/WP_Rewrite */
+    if ( file_exists( $htaccess ) ) {
+            if ( file_exists( $htaback ) ) {
+                    /* get content original.htaccess and wp-waf.htaccess */
+                    $htaccess_content = file_get_contents($htaback, true);
+                    $htawpwaf_content = file_get_contents($htawpwaf, true);
+                     /* remove original .htaccess */
+                    unlink( $htaccess );
+                    /* write a new .htaccess */
+					$fh = fopen($htaccess, 'w') or die("can't open .htaccess");
+					fwrite($fh, $htaccess_content);
+					fwrite($fh, "\n");
+					fwrite($fh, $htawpwaf_content);
+					fclose($fh);
+            } else {
+                    /* make backup */
+                    copy( $htaccess, $htaback );
+                    /* get content original.htaccess and wp-waf.htaccess */
+                    $htaccess_content = file_get_contents($htaccess, true);
+                    $htawpwaf_content = file_get_contents($htawpwaf, true);
+                     /* remove original .htaccess */
+                    unlink( $htaccess );
+                    /* write a new .htaccess */
+					$fh = fopen($htaccess, 'w') or die("can't open .htaccess");
+					fwrite($fh, $htawpwaf_content);
+					fwrite($fh, "\n");
+					fwrite($fh, $htaccess_content);
+					fclose($fh);
+            }
+    } else {
+    	echo "Sorry, .htaccess not found. Reconfigure .htaccess file and reinstall WP WAF.";
+    }
+
 }
 
 
@@ -235,7 +247,7 @@ function wp_waf_settings() {
 
 	<div class="wrap">
 		<h2><?php _e( 'WP WAF Settings', 'wp-waf' ); ?></h2>
-		<p><?php _e( 'The WP_WAF is a Web Application Firewall for Wordpress. Protects against current and future attacks.', 'wp-waf' ); ?></p>
+		<p><?php _e( 'The WP_WAF is a Web Application Firewall for Wordpress. Protects against web attacks.', 'wp-waf' ); ?></p>
 		<div class="clear" id="poststuff" style="width: 560px;">
 			<form method="post" action="options.php">
 <?php
