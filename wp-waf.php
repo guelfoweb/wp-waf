@@ -261,6 +261,39 @@ $waf_referrer        = isset( $settings['waf_referrer'] )        ? $settings['wa
 $waf_useragent       = isset( $settings['waf_useragent'] )       ? $settings['waf_useragent']       : false;
 $waf_useragent_blank = isset( $settings['waf_useragent_blank'] ) ? $settings['waf_useragent_blank'] : false;
 $waf_query_too_long  = isset( $settings['waf_query_too_long'] )  ? $settings['waf_query_too_long']  : false;
+$waf_disable_dirlist = isset( $settings['waf_disable_dirlist'] ) ? $settings['waf_disable_dirlist'] : false;
+
+$waftag   = ' BEGIN WP WAF';
+$dirlist  = 'Options -Indexes';
+$htaccess = '../.htaccess';
+$content  = file_get_contents($htaccess);
+if ( isset( $settings['waf_disable_dirlist'] ) != "" ) {
+	// Disabling Directory Listing (secure mode)
+	if(strpos($content, $dirlist)) { #YES
+		echo "Directory Listing <font color='green'>is Disabled</font> (secure mode).";
+	} else {
+		if(strpos($content, $waftag)) { #YES
+			$add_dirlist = str_replace($waftag, $waftag."\n".$dirlist, $content);
+			file_put_contents($htaccess,$add_dirlist);
+			echo "Directory Listing <font color='green'>is now Disabled</font> (secure mode).";
+		} else {
+			echo "WP WAF Tag not found. Directory Listing <font color='green'>is Enabled by default</font> (INsecure mode).";	
+		}
+	}
+} else {
+	// Enabling Directory Listing (INsecure mode)
+	if(strpos($content, $dirlist)) {
+		if(strpos($content, $waftag)) { #YES
+			$rem_dirlist = str_replace($waftag."\n".$dirlist, $waftag, $content);
+			file_put_contents($htaccess,$rem_dirlist);
+			echo "Directory Listing <font color='red'>is now Enabled</font> (INsecure mode).";
+		} else {
+			echo "WP WAF Tag not found. Directory Listing <font color='red'>is Enabled by defaut</font> (INsecure mode).";	
+		}
+	} else {
+		echo "Directory Listing <font color='red'>is Enabled</font> (INsecure mode).";
+	}
+}
 $waf_msg             = isset( $settings['waf_msg'] )             ? $settings['waf_msg']             : 'waf_logo';
 ?>
 				<div class="postbox">
@@ -334,6 +367,12 @@ $waf_msg             = isset( $settings['waf_msg'] )             ? $settings['wa
 									<input type="checkbox" name="waf_settings[waf_query_too_long]" value="1" id="waf_query_too_long" <?php checked( '1', $waf_query_too_long ); ?> />
 								</td>
 							</tr>
+							<tr valign="top">
+								<th scope="row"><?php _e( 'Disable Directory Listing', 'wp-waf' ); ?></th>
+								<td>
+									<input type="checkbox" name="waf_settings[waf_disable_dirlist]" value="1" id="waf_disable_dirlist" <?php checked( '1', $waf_disable_dirlist ); ?> />
+								</td>
+							</tr>							
 
 							<tr valign="top">
 								<th scope="row"><?php _e( 'Attack Message', 'wp-waf' ); ?></th>
