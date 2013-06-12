@@ -12,85 +12,89 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: wp_waf.php:217
+#: wp_waf.php:229
 msgid "Settings"
 msgstr ""
 
-#: wp_waf.php:237
+#: wp_waf.php:249
 msgid "WP WAF Settings"
 msgstr ""
 
-#: wp_waf.php:238
+#: wp_waf.php:250
 msgid ""
 "The WP_WAF is a Web Application Firewall for Wordpress. Protects against "
-"current and future attacks."
+"web attacks."
 msgstr ""
 
 #: wp_waf.php:255
 msgid "Manage email notification of attacks"
 msgstr ""
 
-#: wp_waf.php:260
+#: wp_waf.php:305
 msgid "Email Address"
 msgstr ""
 
-#: wp_waf.php:272
+#: wp_waf.php:317
 msgid "Notifications for attacks type"
 msgstr ""
 
-#: wp_waf.php:276
+#: wp_waf.php:321
 msgid "Query"
 msgstr ""
 
-#: wp_waf.php:283
+#: wp_waf.php:328
 msgid "Method"
 msgstr ""
 
-#: wp_waf.php:290
+#: wp_waf.php:335
 msgid "Referrer"
 msgstr ""
 
-#: wp_waf.php:297
+#: wp_waf.php:342
 msgid "User Agent"
 msgstr ""
 
-#: wp_waf.php:304
+#: wp_waf.php:349
 msgid "User Agent Empty"
 msgstr ""
 
-#: wp_waf.php:307
+#: wp_waf.php:352
 msgid "Not recommended"
 msgstr ""
 
-#: wp_waf.php:316
+#: wp_waf.php:361
 msgid "Under the Hood"
 msgstr ""
 
-#: wp_waf.php:320
+#: wp_waf.php:365
 msgid "Block Query &gt; 255 char"
 msgstr ""
 
-#: wp_waf.php:327
+#: wp_waf.php:371
+msgid "Disable Directory Listing"
+msgstr ""
+
+#: wp_waf.php:378
 msgid "Attack Message"
 msgstr ""
 
-#: wp_waf.php:331
+#: wp_waf.php:382
 msgid "Logo"
 msgstr ""
 
-#: wp_waf.php:334
+#: wp_waf.php:385
 msgid "Blank Page"
 msgstr ""
 
-#: wp_waf.php:345
+#: wp_waf.php:396
 msgid "Test Configuration"
 msgstr ""
 
-#: wp_waf.php:350
+#: wp_waf.php:401
 msgid "%1$sTest your configuration now!%2$s"
 msgstr ""
 
-#: wp_waf.php:359
+#: wp_waf.php:410
 msgid "Save Changes"
 msgstr ""
 
@@ -99,14 +103,14 @@ msgid "WP WAF"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "http://wordpress.org/extend/plugins/wp-waf/"
+msgid "http://wordpress.org/plugins/wp-waf/"
 msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
-"WP WAF - WordPress Application Firewall. Protects against current and future "
-"attacks. Email notification is disabled by default, notification can be "
-"activated and configured in <strong>Settings -> WP WAF</strong>. Go to your "
+"WP WAF - WordPress Application Firewall. Protects against web attacks "
+"Email notification is disabled by default, notification can be activated"
+"and configured in <strong>Settings -> WP WAF</strong>. Go to your "
 "<a href=\"options-general.php?page=wp_waf\">WP WAF configuration</a> page."
 msgstr ""
 
