@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: WP WAF
-Plugin URI: http://wordpress.org/extend/plugins/wp-waf/
-Description: WP WAF - WordPress Application Firewall. Protects against current and future attacks. Email notification is disabled by default, notification can be activated and configured in <strong>Settings -> WP WAF</strong>. Go to your <a href="options-general.php?page=wp_waf">WP WAF configuration</a> page.
+Plugin URI: http://wordpress.org/plugins/wp-waf/
+Description: WP WAF - WordPress Application Firewall. Protects against web attacks. Email notification is disabled by default, notification can be activated and configured in <strong>Settings -> WP WAF</strong>. Go to your <a href="options-general.php?page=wp_waf">WP WAF configuration</a> page.
 Author: Gianni 'guelfoweb' Amato
 Version: 2.0
 Author URI: https://github.com/guelfoweb/wp-waf/
@@ -38,7 +38,7 @@ $sql .= "benchmark\([0-9]+,[a-z]+|benchmark\%28+[0-9]+%2c[a-z]+|";
 $sql .= "eval\(.*\(.*|eval%28.*%28.*|";
 $sql .= "update.*set.*=|delete.*from";
 
-$trasversal = "\.\.\/|\.\.\\|%2e%2e%2f|%2e%2e\/|\.\.%2f|%2e%2e%5c";
+$traversal = "\.\.\/|\.\.\\|%2e%2e%2f|%2e%2e\/|\.\.%2f|%2e%2e%5c";
 
 $rfi  = "%00|";
 $rfi .= "(?:((?:ht|f)tp(?:s?)|file|webdav)\:\/\/|~\/|\/).*\.\w{2,3}|";
@@ -101,7 +101,7 @@ function wp_waf_filter( $content ) {
 	$msg .= "\nREFERRER: ".$req_referr;
 	$msg .= "\n";
 
-	global $xss, $ua, $trasversal, $sql, $rfi;
+	global $xss, $ua, $traversal, $sql, $rfi;
 
 	$settings = (array) get_option( 'waf_settings' );
 
@@ -134,9 +134,9 @@ function wp_waf_filter( $content ) {
 	elseif ( preg_match( "/((\%3c)|(\%3c).)[^(\%3e)]*(".$xss.")[^(\%3e)]*(%3e)/i", $req_query, $matched ) ) {
 		wp_waf_email( 'Query XSS', $msg, $matched[1], 'waf_query' );
 	}
-	/* Query - Trasversal */
-	elseif ( preg_match( "/^.*(".$trasversal.").*/i", $req_query, $matched ) ) {
-		wp_waf_email( 'Query Trasversal', $msg, $matched[1], 'waf_query' );
+	/* Query - traversal */
+	elseif ( preg_match( "/^.*(".$traversal.").*/i", $req_query, $matched ) ) {
+		wp_waf_email( 'Query traversal', $msg, $matched[1], 'waf_query' );
 	}
 	/* Query - Remote File Inclusion */
 	elseif ( preg_match( "/^.*(".$rfi.").*/i", $req_query, $matched ) ) {
@@ -165,7 +165,7 @@ function wp_waf_install() {
 	}
 
     /* Configure .htaccess */
-   	/* more on .htaccess -> http://codex.wordpress.org/Class_Reference/WP_Rewrite */
+   	/* verify is .htaccss is ok */
     if ( file_exists( $htaccess ) ) {
             if ( file_exists( $htaback ) ) {
                     /* get content original.htaccess and wp-waf.htaccess */
@@ -262,7 +262,7 @@ $waf_useragent       = isset( $settings['waf_useragent'] )       ? $settings['wa
 $waf_useragent_blank = isset( $settings['waf_useragent_blank'] ) ? $settings['waf_useragent_blank'] : false;
 $waf_query_too_long  = isset( $settings['waf_query_too_long'] )  ? $settings['waf_query_too_long']  : false;
 $waf_disable_dirlist = isset( $settings['waf_disable_dirlist'] ) ? $settings['waf_disable_dirlist'] : false;
-
+// configure Directory Listing
 $waftag   = ' BEGIN WP WAF';
 $dirlist  = 'Options -Indexes';
 $htaccess = '../.htaccess';
@@ -277,7 +277,7 @@ if ( isset( $settings['waf_disable_dirlist'] ) != "" ) {
 			file_put_contents($htaccess,$add_dirlist);
 			echo "Directory Listing <font color='green'>is now Disabled</font> (secure mode).";
 		} else {
-			echo "WP WAF Tag not found. Directory Listing <font color='green'>is Enabled by default</font> (INsecure mode).";	
+			echo "WP WAF Tag not found. Directory Listing <font color='red'>is Enabled by default</font> (INsecure mode).";	
 		}
 	}
 } else {
